@@ -1,0 +1,28 @@
+.header h1 {
+  font-size: 1.2rem;
+}
+
+.header p:last-child {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.description {
+  padding-bottom: 1rem;
+  font-size: 0.9rem;
+  border-bottom: 1px var(--secondary-gray) solid;
+  color: var(--primary-gray);
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding-top: 3rem;
+  }
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+}
