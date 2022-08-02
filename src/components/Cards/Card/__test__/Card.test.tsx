@@ -8,6 +8,7 @@ describe("Server Card", () => {
         server="https://www/starworks.io"
         status="running"
         timeElapsed={5}
+        statusCode={500}
       />
     );
   });
@@ -22,5 +23,9 @@ describe("Server Card", () => {
 
   test("Should show time elapsed since the last check", () => {
     expect(screen.getByText(/last checked/i)).toBeInTheDocument();
+  });
+
+  test("Should display color based on status role", () => {
+    expect(screen.getByRole("article").style.backgroundColor).toEqual("red");
   });
 });

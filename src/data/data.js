@@ -1,37 +1,38 @@
 export const servers = [
   {
-    link: "https://www.starworks.io",
-    status: "running",
-    timeElapsed: 5,
-  },
-  {
-    link: "https://dev.vantage.run/health",
-    status: "running",
-    timeElapsed: 5,
-  },
-  {
     link: "https://status.gitlab.com/",
     status: "running",
+    statusCode: 200,
     timeElapsed: 5,
   },
   {
-    link: "https://www.starworks.io",
+    link: "https://www.stackworx.io/",
     status: "running",
+    statusCode: 200,
     timeElapsed: 5,
   },
   {
-    link: "https://www.starworks.io",
+    link: "http://localhost:8000/api/v1/picknPay",
     status: "running",
+    statusCode: 200,
     timeElapsed: 5,
   },
   {
-    link: "https://www.starworks.io",
+    link: "http://localhost:8000/api/v1/shoprite",
     status: "running",
+    statusCode: 200,
     timeElapsed: 5,
   },
   {
-    link: "https://www.starworks.io",
+    link: "http://localhost:8000/api/v1/checkers",
     status: "running",
+    statusCode: 200,
+    timeElapsed: 5,
+  },
+  {
+    link: "http://localhost:8000/api/v1/woolworths",
+    status: "running",
+    statusCode: 200,
     timeElapsed: 5,
   },
 ];

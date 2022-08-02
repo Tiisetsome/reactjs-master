@@ -4,7 +4,12 @@ import styles from "./Cards.module.css";
 import Card from "./Card/Card";
 
 interface CardsProps {
-  servers: { link: string; status: string; timeElapsed: number }[];
+  servers: {
+    link: string;
+    status: string;
+    statusCode: number;
+    timeElapsed: number;
+  }[];
 }
 
 const Cards: React.FC<CardsProps> = ({ servers }) => {
@@ -16,6 +21,7 @@ const Cards: React.FC<CardsProps> = ({ servers }) => {
             key={index}
             server={server.link}
             status={server.status}
+            statusCode={server.statusCode}
             timeElapsed={server.timeElapsed}
           />
         );

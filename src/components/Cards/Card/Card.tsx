@@ -7,6 +7,7 @@ import styles from "./Card.module.css";
 interface CardProps {
   server: string;
   status: string;
+  statusCode: number;
   timeElapsed: number;
 }
 
