@@ -3,3 +3,17 @@
   flex-wrap: wrap;
   gap: 1rem;
 }
+
+.payload button {
+  padding: 0.5rem 2rem;
+  color: #fff;
+  background-color: black;
+  border: 1px black solid;
+  cursor: pointer;
+}
+
+.payload button:hover {
+  background-color: rgb(31, 31, 31);
+  transition: all 0.125s ease-in-out;
+  border: 1px rgb(31, 31, 31) solid;
+}

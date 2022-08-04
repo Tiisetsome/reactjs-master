@@ -1,0 +1,11 @@
+.form {
+  margin-bottom: 1.5rem;
+}
+
+.form label {
+  font-size: 0.9rem;
+}
+
+.form select {
+  padding: 0.5rem 2rem;
+}

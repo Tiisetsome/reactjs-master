@@ -1,4 +1,5 @@
 import React from "react";
+import Filter from "../Filter/Filter";
 import styles from "./Container.module.css";
 
 interface ContainerProps {

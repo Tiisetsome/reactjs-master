@@ -1,11 +1,14 @@
 .card {
-  /* width: 100%; */
-  display: inline-block;
-  width: calc(100% * (1 / 1) - 20px - 1px);
   padding: 1.5rem;
   border-radius: 10px;
   border: 1px var(--primary-green) solid;
   background-color: var(--primary-green);
+  cursor: pointer;
+  box-shadow: 1rem 1rem 2rem rgb(177, 177, 177);
+}
+
+.card:hover {
+  background-attachment: fixed;
 }
 
 .cardInfo {
@@ -16,8 +19,15 @@
   font-size: 1.2rem;
 }
 
-.cardInfo:nth-child(2) > :first-child {
+.cardInfo.loading :first-child {
   font-size: 1.1rem;
+  animation: loadingIcon 1.5s infinite;
+}
+
+@keyframes loadingIcon {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .cardInfo:last-child {

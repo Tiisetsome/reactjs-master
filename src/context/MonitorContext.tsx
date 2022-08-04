@@ -15,6 +15,8 @@ interface AppContext {
       timeElapsed: number;
     }[]
   ) => void;
+  loading: boolean;
+  lastServerPayload: any;
 }
 
 const MonitorContext = createContext<AppContext>({} as AppContext);

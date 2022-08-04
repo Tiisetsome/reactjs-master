@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import Container from "../Container";
 
 describe("Container", () => {
-  test("should render header, description and number of servers being tested", () => {
+  beforeEach(() => {
     render(
       <Container
         header="Build Monitor"
@@ -10,7 +10,9 @@ describe("Container", () => {
         numberOfServers={5}
       />
     );
+  });
 
+  test("should render header, description and number of servers being tested", () => {
     const description =
       "A tool to visibly check the health status of a server or an environment";
     const numberOfServersElementArray = screen
