@@ -4,22 +4,12 @@ import styles from "./Cards.module.css";
 import Card from "./Card/Card";
 import Filter from "../Filter/Filter";
 
+import { Server } from "../../constants/constants";
+
 interface CardsProps {
-  servers: {
-    link: string;
-    status: string;
-    statusCode: number;
-    timeElapsed: number;
-  }[];
+  servers: Server[];
   lastCheckPayload: string;
   loading: boolean;
-}
-
-interface Server {
-  link: string;
-  status: string;
-  statusCode: number;
-  timeElapsed: number;
 }
 
 const Cards: React.FC<CardsProps> = ({
@@ -51,6 +41,7 @@ const Cards: React.FC<CardsProps> = ({
     setFilteredServers(serversFiltered);
   }, [filters, servers]);
 
+  console.log(loading);
   return (
     <section>
       {!showCards && <Filter filters={filters} setFilters={setFilters} />}

@@ -1,20 +1,9 @@
 import { createContext } from "react";
+import { Server } from "../constants/constants";
 
 interface AppContext {
-  servers: {
-    link: string;
-    status: string;
-    statusCode: number;
-    timeElapsed: number;
-  }[];
-  checkServerStatus: (
-    servers: {
-      link: string;
-      status: string;
-      statusCode: number;
-      timeElapsed: number;
-    }[]
-  ) => void;
+  servers: Server[];
+  checkServerStatus: (servers: Server[]) => void;
   loading: boolean;
   lastServerPayload: any;
 }

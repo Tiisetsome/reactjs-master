@@ -3,14 +3,10 @@ import {
   SAVE_SERVER_RESPONSE,
   STORE_LAST_SERVER_PAYLOAD,
 } from "./constants/constants";
+import { Server } from "../constants/constants";
 
 interface State {
-  servers: {
-    link: string;
-    status: string;
-    statusCode: number;
-    timeElapsed: number;
-  }[];
+  servers: Server[];
   lastServerPayload: any;
   loading: boolean;
 }

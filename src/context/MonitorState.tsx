@@ -6,18 +6,12 @@ import {
   SAVE_SERVER_RESPONSE,
   STORE_LAST_SERVER_PAYLOAD,
 } from "./constants/constants";
+import { Server } from "../constants/constants";
 import MonitorContext from "./MonitorContext";
 import MonitorReducer from "./MonitorReducer";
 
 interface MonitorPros {
   children?: React.ReactNode;
-}
-
-interface Server {
-  link: string;
-  status: string;
-  statusCode: number;
-  timeElapsed: number;
 }
 
 const MonitorState: React.FC<MonitorPros> = ({ children }) => {
@@ -30,10 +24,7 @@ const MonitorState: React.FC<MonitorPros> = ({ children }) => {
   const [state, dispatch] = useReducer(MonitorReducer, initialState);
 
   const checkServerStatus = async (servers: Server[]) => {
-    dispatch({
-      type: LOADING,
-      payload: true,
-    });
+    setLoading(true);
 
     const serverCallPromisesArray = servers.map((server) =>
       serverCall(server.link)
@@ -67,10 +58,7 @@ const MonitorState: React.FC<MonitorPros> = ({ children }) => {
         payload: responses[responses.length - 1],
       });
 
-      dispatch({
-        type: LOADING,
-        payload: false,
-      });
+      setLoading(false);
     }
   };
 
@@ -89,6 +77,13 @@ const MonitorState: React.FC<MonitorPros> = ({ children }) => {
       statusCode: results.status ? results.status : results.response.status,
       timeElapsed: 5,
     };
+  };
+
+  const setLoading = (status: boolean) => {
+    dispatch({
+      type: LOADING,
+      payload: status,
+    });
   };
 
   return (
