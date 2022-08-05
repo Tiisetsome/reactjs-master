@@ -35,7 +35,14 @@ const MonitorState: React.FC<MonitorPros> = ({ children }) => {
     if (responses) {
       let serverHealth: Server[] = [];
       responses.forEach((response) => {
-        if (typeof response.data.data === "string" && response.status === 200) {
+        if (response.data.data?.status === "success") {
+          response.status = 200;
+          response.config.url = response.data.targeturl;
+          serverHealth.push(formatResult(response, "UP"));
+        } else if (
+          typeof response.data.data === "string" &&
+          response.status === 200
+        ) {
           response.config.url = response.data.targeturl;
           serverHealth.push(formatResult(response, "UP"));
         } else if (
