@@ -10,7 +10,10 @@ const App: React.FC = () => {
   const { servers, loading, lastServerPayload, checkServerStatus } =
     monitorContext;
 
-  const [count, setCount] = useState(5);
+  const [count, setCount] = useState({
+    countUp: 0,
+    countDown: 2,
+  });
 
   const [timeUntilNextCheck] = useState(1);
 
@@ -20,13 +23,24 @@ const App: React.FC = () => {
     checkServerStatus(servers);
 
     intervalId.current = setInterval(() => {
-      setCount((prevCount) => prevCount - 1);
+      setCount((prevCount) => {
+        return {
+          ...prevCount,
+          countDown: prevCount.countDown - 1,
+          countUp: prevCount.countUp + 1,
+        };
+      });
     }, timeUntilNextCheck * 60 * 1000);
   }, [intervalId]);
 
   useEffect(() => {
-    if (count <= 0) {
-      setCount((prevCount) => prevCount + 5);
+    if (count.countDown <= 0) {
+      setCount((prevCount) => {
+        return {
+          ...prevCount,
+          countDown: prevCount.countDown + 2,
+        };
+      });
       checkServerStatus(servers);
     }
   });
@@ -42,7 +56,7 @@ const App: React.FC = () => {
           servers={servers.map((server) => {
             return {
               ...server,
-              timeElapsed: count,
+              upTime: count.countUp,
             };
           })}
           lastCheckPayload={JSON.stringify(lastServerPayload)}

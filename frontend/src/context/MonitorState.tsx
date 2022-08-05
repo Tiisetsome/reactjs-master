@@ -34,17 +34,17 @@ const MonitorState: React.FC<MonitorPros> = ({ children }) => {
 
     if (responses) {
       let serverHealth: Server[] = [];
-
       responses.forEach((response) => {
-        if (response.status === 200) {
+        if (typeof response.data.data === "string" && response.status === 200) {
+          response.config.url = response.data.targeturl;
           serverHealth.push(formatResult(response, "UP"));
         } else if (
-          response.response.status === 500 ||
-          response.response.status === 503
+          response.data.status === 500 ||
+          response.data.status === 503
         ) {
           serverHealth.push(formatResult(response, "DOWN"));
         } else {
-          serverHealth.push(formatResult(response, "OTHER"));
+          serverHealth.push(formatResult(response.data, "OTHER"));
         }
       });
 
@@ -65,17 +65,20 @@ const MonitorState: React.FC<MonitorPros> = ({ children }) => {
   const serverCall = (url: string) => {
     return axios({
       method: "get",
-      url: url,
+      url: "/proxy",
       withCredentials: false,
-    }).catch((error) => error);
+      headers: {
+        targetUrl: url,
+      },
+    });
   };
 
   const formatResult = (results: any, status: string) => {
     return {
-      link: results.config.url,
+      link: results.config ? results.config.url : results.targeturl,
       status,
-      statusCode: results.status ? results.status : results.response.status,
-      timeElapsed: 5,
+      statusCode: results.status,
+      upTime: 5,
     };
   };
 

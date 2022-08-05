@@ -9,7 +9,7 @@ interface CardProps {
   server: string;
   status: string;
   statusCode: number;
-  timeElapsed: number;
+  upTime: number;
   showCards: boolean;
   setShowCards: React.Dispatch<React.SetStateAction<boolean>>;
   loading: boolean;
@@ -19,7 +19,7 @@ const Card: React.FC<CardProps> = ({
   server,
   status,
   statusCode,
-  timeElapsed,
+  upTime,
   showCards,
   setShowCards,
   loading,
@@ -62,10 +62,13 @@ const Card: React.FC<CardProps> = ({
           <span>Status : {status}</span>
         </div>
       )}
-      {statusCode === 200 && (
+
+      {!loading && (
         <div className={styles.cardInfo}>
           <AiFillClockCircle />
-          <span>Up Time : {formatWording(timeElapsed)}</span>
+          <span>
+            Up Time : {statusCode === 200 ? formatWording(upTime) : 0}
+          </span>
         </div>
       )}
     </article>

@@ -4,7 +4,7 @@ import Card from "../Card";
 const cardProps = {
   server: "https://www/starworks.io",
   status: "running",
-  timeElapsed: 5,
+  upTime: 5,
   statusCode: 200,
   showCards: false,
   setShowCards: () => {},
@@ -17,7 +17,7 @@ describe("Server Card", () => {
       <Card
         server="https://www/starworks.io"
         status="running"
-        timeElapsed={5}
+        upTime={5}
         statusCode={200}
         showCards={false}
         setShowCards={() => {}}
@@ -47,14 +47,14 @@ describe("Server Card", () => {
 
 describe("Server Card Up Time wording", () => {
   test("Should show correct wording if the server status is 200 and time left before another health check is less or equal to 1 minute", () => {
-    render(<Card {...cardProps} statusCode={200} timeElapsed={1} />);
+    render(<Card {...cardProps} statusCode={200} upTime={1} />);
     expect(screen.getByText(/up time/i).textContent).toBe(
       "Up Time : 1 minute ago"
     );
   });
 
   test("Should show correct wording if the server status is 200 and time left before another health check is greater 1 minute", () => {
-    render(<Card {...cardProps} statusCode={200} timeElapsed={5} />);
+    render(<Card {...cardProps} statusCode={200} upTime={5} />);
     expect(screen.getByText(/up time/i).textContent).toBe(
       "Up Time : 5 minutes ago"
     );

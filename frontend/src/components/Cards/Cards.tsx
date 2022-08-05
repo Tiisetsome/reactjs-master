@@ -41,7 +41,6 @@ const Cards: React.FC<CardsProps> = ({
     setFilteredServers(serversFiltered);
   }, [filters, servers]);
 
-  console.log(loading);
   return (
     <section>
       {!showCards && <Filter filters={filters} setFilters={setFilters} />}
@@ -54,7 +53,7 @@ const Cards: React.FC<CardsProps> = ({
                 server={server.link}
                 status={server.status}
                 statusCode={server.statusCode}
-                timeElapsed={server.timeElapsed}
+                upTime={server.upTime}
                 showCards={showCards}
                 setShowCards={setShowCards}
                 loading={loading}

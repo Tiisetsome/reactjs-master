@@ -3,37 +3,37 @@ export const servers = [
     link: "https://status.gitlab.com/",
     status: "running",
     statusCode: 200,
-    timeElapsed: 5,
+    upTime: 0,
   },
   {
     link: "https://www.stackworx.io/",
     status: "running",
     statusCode: 200,
-    timeElapsed: 5,
+    upTime: 0,
   },
   {
     link: "http://localhost:8000/api/v1/picknPay",
     status: "running",
     statusCode: 500,
-    timeElapsed: 5,
+    upTime: 0,
   },
   {
     link: "http://localhost:8000/api/v1/shoprite",
     status: "running",
     statusCode: 503,
-    timeElapsed: 5,
+    upTime: 0,
   },
   {
     link: "http://localhost:8000/api/v1/checkers",
     status: "running",
     statusCode: 304,
-    timeElapsed: 5,
+    upTime: 0,
   },
   {
-    link: "http://localhost:8000/api/v1/woolworths",
+    link: "https://localhost:8000/api/v1/woolworths",
     status: "running",
     statusCode: 200,
-    timeElapsed: 5,
+    upTime: 5,
   },
 ];
 
@@ -45,7 +45,7 @@ export const endpoints = [
     link: "https://www.stackworx.io/",
   },
   {
-    link: "http://localhost:8000/api/v1/picknPay",
+    link: "https://dev.vantage.run/health",
   },
   {
     link: "http://localhost:8000/api/v1/shoprite",
