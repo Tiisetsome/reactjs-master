@@ -2,9 +2,13 @@ import axios from "axios";
 import React, { useReducer } from "react";
 import { endpoints } from "../data/data";
 import {
+  DOWN,
   LOADING,
+  OTHER,
   SAVE_SERVER_RESPONSE,
   STORE_LAST_SERVER_PAYLOAD,
+  UP,
+  UPDATE_UPTIME,
 } from "./constants/constants";
 import { Server } from "../constants/constants";
 import MonitorContext from "./MonitorContext";
@@ -14,8 +18,14 @@ interface MonitorPros {
   children?: React.ReactNode;
 }
 
+type State = {
+  servers: Server[] | any;
+  lastServerPayload: any;
+  loading: boolean;
+};
+
 const MonitorState: React.FC<MonitorPros> = ({ children }) => {
-  const initialState = {
+  const initialState: State = {
     servers: endpoints,
     lastServerPayload: {},
     loading: false,
@@ -38,20 +48,20 @@ const MonitorState: React.FC<MonitorPros> = ({ children }) => {
         if (response.data.data?.status === "success") {
           response.status = 200;
           response.config.url = response.data.targeturl;
-          serverHealth.push(formatResult(response, "UP"));
+          serverHealth.push(formatResult(response, UP));
         } else if (
           typeof response.data.data === "string" &&
           response.status === 200
         ) {
           response.config.url = response.data.targeturl;
-          serverHealth.push(formatResult(response, "UP"));
+          serverHealth.push(formatResult(response, UP));
         } else if (
           response.data.status === 500 ||
           response.data.status === 503
         ) {
-          serverHealth.push(formatResult(response, "DOWN"));
+          serverHealth.push(formatResult(response, DOWN));
         } else {
-          serverHealth.push(formatResult(response.data, "OTHER"));
+          serverHealth.push(formatResult(response.data, OTHER));
         }
       });
 
@@ -67,6 +77,13 @@ const MonitorState: React.FC<MonitorPros> = ({ children }) => {
 
       setLoading(false);
     }
+  };
+
+  const updateServerUptime = () => {
+    dispatch({
+      type: UPDATE_UPTIME,
+      payload: state.servers,
+    });
   };
 
   const serverCall = (url: string) => {
@@ -85,7 +102,7 @@ const MonitorState: React.FC<MonitorPros> = ({ children }) => {
       link: results.config ? results.config.url : results.targeturl,
       status,
       statusCode: results.status,
-      upTime: 5,
+      upTime: 0,
     };
   };
 
@@ -103,6 +120,7 @@ const MonitorState: React.FC<MonitorPros> = ({ children }) => {
         lastServerPayload: state.lastServerPayload,
         loading: state.loading,
         checkServerStatus,
+        updateServerUptime,
       }}
     >
       {children}

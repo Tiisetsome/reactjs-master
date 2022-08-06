@@ -7,8 +7,13 @@ import MonitorContext from "./context/MonitorContext";
 const App: React.FC = () => {
   const monitorContext = useContext(MonitorContext);
 
-  const { servers, loading, lastServerPayload, checkServerStatus } =
-    monitorContext;
+  const {
+    servers,
+    loading,
+    lastServerPayload,
+    checkServerStatus,
+    updateServerUptime,
+  } = monitorContext;
 
   const [count, setCount] = useState({
     countUp: 0,
@@ -42,23 +47,20 @@ const App: React.FC = () => {
         };
       });
       checkServerStatus(servers);
+    } else if (count.countDown < 2) {
+      updateServerUptime();
     }
-  });
+  }, [count.countDown]);
 
   return (
     <div className="wrapper">
       <Container
         header="Build Monitor"
         description="A tool to visibly check the health status of a server or an environment."
-        numberOfServers={5}
+        numberOfServers={servers.length}
       >
         <Cards
-          servers={servers.map((server) => {
-            return {
-              ...server,
-              upTime: count.countUp,
-            };
-          })}
+          servers={servers}
           lastCheckPayload={JSON.stringify(lastServerPayload)}
           loading={loading}
         />

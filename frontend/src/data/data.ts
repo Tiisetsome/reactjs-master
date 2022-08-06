@@ -48,12 +48,6 @@ export const endpoints = [
     link: "https://dev.vantage.run/health",
   },
   {
-    link: "http://localhost:8000/api/v1/shoprite",
-  },
-  {
-    link: "http://localhost:8000/api/v1/checkers",
-  },
-  {
     link: "https://lctl.co.za",
   },
   {
@@ -61,5 +55,20 @@ export const endpoints = [
   },
   {
     link: "https://grocerywebscrapper.herokuapp.com",
+  },
+  {
+    link: "https://stackoverflow.com/",
+  },
+  {
+    link: "https://www.freecodecamp.org//",
+  },
+  {
+    link: "http://localhost:8000/",
+  },
+  {
+    link: "https://nextjs.org/",
+  },
+  {
+    link: "https://dev.vantage.run/health",
   },
 ];

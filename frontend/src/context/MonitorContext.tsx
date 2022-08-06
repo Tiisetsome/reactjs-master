@@ -3,9 +3,10 @@ import { Server } from "../constants/constants";
 
 interface AppContext {
   servers: Server[];
-  checkServerStatus: (servers: Server[]) => void;
-  loading: boolean;
   lastServerPayload: any;
+  loading: boolean;
+  checkServerStatus: (servers: Server[]) => void;
+  updateServerUptime: () => void;
 }
 
 const MonitorContext = createContext<AppContext>({} as AppContext);
