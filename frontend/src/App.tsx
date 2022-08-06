@@ -7,6 +7,8 @@ import MonitorContext from "./context/MonitorContext";
 const App: React.FC = () => {
   const monitorContext = useContext(MonitorContext);
 
+  const minutesBeforeNextCheck = 5;
+
   const {
     servers,
     loading,
@@ -16,8 +18,7 @@ const App: React.FC = () => {
   } = monitorContext;
 
   const [count, setCount] = useState({
-    countUp: 0,
-    countDown: 2,
+    countDown: minutesBeforeNextCheck,
   });
 
   const [timeUntilNextCheck] = useState(1);
@@ -32,7 +33,6 @@ const App: React.FC = () => {
         return {
           ...prevCount,
           countDown: prevCount.countDown - 1,
-          countUp: prevCount.countUp + 1,
         };
       });
     }, timeUntilNextCheck * 60 * 1000);
@@ -43,11 +43,11 @@ const App: React.FC = () => {
       setCount((prevCount) => {
         return {
           ...prevCount,
-          countDown: prevCount.countDown + 2,
+          countDown: prevCount.countDown + minutesBeforeNextCheck,
         };
       });
       checkServerStatus(servers);
-    } else if (count.countDown < 2) {
+    } else if (count.countDown < minutesBeforeNextCheck) {
       updateServerUptime();
     }
   }, [count.countDown]);
